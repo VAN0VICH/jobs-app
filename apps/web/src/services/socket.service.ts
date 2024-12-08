@@ -2,8 +2,6 @@ import io from 'socket.io-client';
 
 import config from 'config';
 
-import { User } from 'types';
-
 const socket = io(config.WS_URL, {
   transports: ['websocket'],
   autoConnect: false,
@@ -25,7 +23,6 @@ export const emit = (event: string, ...args: unknown[]) => {
 
 type SocketListener = {
   (event: string, callback: (data: unknown) => void): void;
-  (event: 'user:updated', callback: (user: User) => void): void;
 };
 
 export const on: SocketListener = (event, callback) => {
